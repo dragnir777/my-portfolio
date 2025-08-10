@@ -209,23 +209,23 @@ const Projects = () => {
 
   return (
     <section id="projects" ref={sectionRef} className="py-20 bg-gray-800/30">
-      <div className="max-w-content mx-auto px-6">
+      <div className="container mx-auto px-4">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-poppins font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Mes <span className="bg-gradient-to-r from-cyber-green to-blue-500 bg-clip-text text-transparent">Projets</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Découvrez mes réalisations techniques dans les secteurs gouvernemental, santé, agriculture et fintech, 
               avec un focus sur la sécurité, le design et la documentation.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyber-green to-blue-500 mx-auto rounded-full mt-6" />
+            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto rounded-full mt-6" />
           </div>
 
           {/* Featured Projects */}
           <div className="mb-20">
-            <h3 className="text-2xl font-poppins font-bold mb-8 text-center flex items-center justify-center">
+            <h3 className="text-2xl font-bold mb-8 text-center flex items-center justify-center">
               <span className="text-yellow-400 mr-2">⭐</span> 
               Projets Phares
             </h3>
@@ -265,7 +265,7 @@ const Projects = () => {
                   </div>
 
                   <div className="p-6">
-                    <h4 className="text-xl font-poppins font-bold mb-3 text-white group-hover:text-cyber-green transition-colors line-clamp-2">
+                    <h4 className="text-xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors line-clamp-2">
                       {project.title}
                     </h4>
                     
@@ -302,7 +302,7 @@ const Projects = () => {
                       {project.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full border border-gray-600 font-inter"
+                          className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full border border-gray-600"
                         >
                           {tech}
                         </span>
@@ -317,14 +317,14 @@ const Projects = () => {
                     <div className="flex space-x-4">
                       <a
                         href={project.github}
-                        className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors font-inter"
+                        className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
                       >
                         <Github size={16} />
                         <span className="text-sm">Code</span>
                       </a>
                       <a
                         href={project.demo}
-                        className="flex items-center space-x-2 text-cyber-green hover:text-green-300 transition-colors font-inter"
+                        className="flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors"
                       >
                         <ExternalLink size={16} />
                         <span className="text-sm">Détails</span>
@@ -347,7 +347,7 @@ const Projects = () => {
                   placeholder="Rechercher un projet..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-cyber-green focus:outline-none transition-colors font-inter"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-green-400 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -360,7 +360,7 @@ const Projects = () => {
                     onClick={() => setActiveFilter(category.id)}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-inter font-medium transition-all duration-300 ${
                       activeFilter === category.id
-                        ? 'bg-gradient-to-r from-cyber-green to-blue-500 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-lg'
                         : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
                     }`}
                   >
@@ -403,17 +403,17 @@ const Projects = () => {
                 </div>
 
                 <div className="p-6">
-                  <h4 className="text-lg font-poppins font-bold mb-2 text-white group-hover:text-cyber-green transition-colors line-clamp-2">
+                  <h4 className="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors line-clamp-2">
                     {project.title}
                   </h4>
                   
                   <div className="mb-3">
-                    <p className="text-xs text-gray-400 mb-1 font-inter">
+                    <p className="text-xs text-gray-400 mb-1">
                       <strong className="text-blue-400">Rôle:</strong> {project.role.split(' - ')[0]}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 mb-4 text-sm line-clamp-2 font-inter">
+                  <p className="text-gray-300 mb-4 text-sm line-clamp-2">
                     {project.description}
                   </p>
 
@@ -442,7 +442,7 @@ const Projects = () => {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full font-inter"
+                        className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full"
                       >
                         {tech}
                       </span>
@@ -457,14 +457,14 @@ const Projects = () => {
                   <div className="flex space-x-4">
                     <a
                       href={project.github}
-                      className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm font-inter"
+                      className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
                     >
                       <Github size={14} />
                       <span>Code</span>
                     </a>
                     <a
                       href={project.demo}
-                      className="flex items-center space-x-1 text-cyber-green hover:text-green-300 transition-colors text-sm font-inter"
+                      className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors text-sm"
                     >
                       <ExternalLink size={14} />
                       <span>Détails</span>
@@ -478,22 +478,22 @@ const Projects = () => {
           {/* No results */}
           {filteredProjects.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-400 text-lg font-inter">Aucun projet trouvé pour ces critères.</p>
+              <p className="text-gray-400 text-lg">Aucun projet trouvé pour ces critères.</p>
             </div>
           )}
 
           {/* Call to Action */}
-          <div className="text-center bg-gradient-to-r from-cyber-green/10 to-blue-500/10 rounded-2xl p-12 border border-cyber-green/20">
-            <h3 className="text-2xl font-poppins font-bold text-white mb-4">
+          <div className="text-center bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-12 border border-green-500/20">
+            <h3 className="text-2xl font-bold text-white mb-4">
               Intéressé par mes réalisations ?
             </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto font-inter">
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Discutons de votre prochain projet ! Je peux vous accompagner dans le développement, 
               la sécurisation et la documentation de vos applications.
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyber-green to-blue-500 hover:from-green-600 hover:to-blue-600 rounded-full text-white font-poppins font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 rounded-full text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
               Démarrer un projet
             </a>
