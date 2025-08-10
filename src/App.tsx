@@ -15,7 +15,17 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    console.log('Theme toggled to:', newMode ? 'dark' : 'light');
+    
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+      console.log('Added dark class to document');
+    } else {
+      document.documentElement.classList.remove('dark');
+      console.log('Removed dark class from document');
+    }
   };
 
   useEffect(() => {
@@ -40,15 +50,35 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Apply initial theme
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      console.log('Initial dark mode applied');
     } else {
       document.documentElement.classList.remove('dark');
+      console.log('Initial light mode applied');
     }
+  }, [isDarkMode]);
+
+  // Debug: Log current theme state
+  useEffect(() => {
+    console.log('Current theme state:', isDarkMode ? 'dark' : 'light');
+    console.log('Document has dark class:', document.documentElement.classList.contains('dark'));
   }, [isDarkMode]);
 
   return (
     <div className={`min-h-screen ${isDarkMode ? 'dark' : ''}`}>
+      {/* Debug Theme Button */}
+      <div className="fixed top-20 right-4 z-50 p-4 bg-red-500 text-white rounded-lg">
+        <p>Theme: {isDarkMode ? 'Dark' : 'Light'}</p>
+        <button 
+          onClick={toggleTheme}
+          className="mt-2 px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
+        >
+          Toggle Theme
+        </button>
+      </div>
+      
       <Header 
         activeSection={activeSection} 
         isDarkMode={isDarkMode} 

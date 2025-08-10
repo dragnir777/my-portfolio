@@ -23,12 +23,12 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 bg-gray-800/50">
+    <section id="about" ref={sectionRef} className="py-20 bg-gray-800/50 dark:bg-gray-800/50">
       <div className="container mx-auto px-4">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white dark:text-white">
               À propos de <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">moi</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto rounded-full" />
@@ -52,13 +52,13 @@ const About = () => {
 
               {/* Stats */}
               <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-700">
+                <div className="text-center p-6 bg-gray-900/50 dark:bg-gray-900/50 rounded-xl border border-gray-700 dark:border-gray-700">
                   <div className="text-3xl font-bold text-green-400 mb-2">3+</div>
-                  <div className="text-gray-300">Années d'expérience</div>
+                  <div className="text-gray-300 dark:text-gray-300">Années d'expérience</div>
                 </div>
-                <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-700">
+                <div className="text-center p-6 bg-gray-900/50 dark:bg-gray-900/50 rounded-xl border border-gray-700 dark:border-gray-700">
                   <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
-                  <div className="text-gray-300">Projets réalisés</div>
+                  <div className="text-gray-300 dark:text-gray-300">Projets réalisés</div>
                 </div>
               </div>
             </div>
@@ -70,18 +70,18 @@ const About = () => {
                 <span className="font-semibold">Ouagadougou, Burkina Faso</span>
               </div>
 
-              <h3 className="text-2xl font-bold text-white">
+              <h3 className="text-2xl font-bold text-white dark:text-white">
                 Développeur Full Stack passionné par l'impact social
               </h3>
 
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-300 dark:text-gray-300 text-lg leading-relaxed">
                 Je suis Axison BAYALA, un développeur web full stack basé à Ouagadougou. 
                 Ma passion pour la technologie s'est développée avec la conviction que 
                 le code peut transformer des vies et résoudre des problèmes concrets 
                 dans notre société.
               </p>
 
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-300 dark:text-gray-300 text-lg leading-relaxed">
                 Spécialisé dans le développement backend avec <strong className="text-green-400">Node.js</strong> et 
                 <strong className="text-blue-400"> Express</strong>, j'excelle également dans la création 
                 d'interfaces utilisateur modernes avec <strong className="text-cyan-400">React.js</strong>. 
@@ -94,8 +94,8 @@ const About = () => {
                 <div className="flex items-start space-x-3">
                   <Heart className="text-red-400 mt-1 flex-shrink-0" size={20} />
                   <div>
-                    <div className="font-semibold text-white">Projets à impact social</div>
-                    <div className="text-gray-400">Solutions pour l'éducation, la santé et le développement communautaire</div>
+                    <div className="font-semibold text-white dark:text-white">Projets à impact social</div>
+                    <div className="text-gray-400 dark:text-gray-400">Solutions pour l'éducation, la santé et le développement communautaire</div>
                   </div>
                 </div>
                 
