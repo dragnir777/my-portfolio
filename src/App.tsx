@@ -2,69 +2,100 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Services from './components/Services';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Services from './components/Services';
 import Testimonials from './components/Testimonials';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState('home');
+
+  const toggleTheme = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    console.log('Theme toggled to:', newMode ? 'dark' : 'light');
+    
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+      console.log('Added dark class to document');
+    } else {
+      document.documentElement.classList.remove('dark');
+      console.log('Removed dark class from document');
+    }
+  };
 
   useEffect(() => {
-    setIsLoaded(true);
-    
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'services', 'testimonials', 'blog', 'contact'];
+      const sections = ['home', 'about', 'services', 'skills', 'projects', 'testimonials', 'blog', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
-      sections.forEach(section => {
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
+            break;
           }
         }
-      });
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark');
-  };
+  useEffect(() => {
+    // Apply initial theme
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      console.log('Initial dark mode applied');
+    } else {
+      document.documentElement.classList.remove('dark');
+      console.log('Initial light mode applied');
+    }
+  }, [isDarkMode]);
+
+  // Debug: Log current theme state
+  useEffect(() => {
+    console.log('Current theme state:', isDarkMode ? 'dark' : 'light');
+    console.log('Document has dark class:', document.documentElement.classList.contains('dark'));
+  }, [isDarkMode]);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-deep-night' : 'bg-off-white'} ${isDarkMode ? 'text-off-white' : 'text-deep-night'} transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      {/* African pattern overlay */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-repeat opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23${isDarkMode ? '4CAF50' : 'A67C52'}' fill-opacity='0.03'%3E%3Cpath d='M30 15l7.5 7.5L30 30l-7.5-7.5L30 15z'/%3E%3Cpath d='M15 30l7.5 7.5L15 45l-7.5-7.5L15 30z'/%3E%3Cpath d='M45 30l7.5 7.5L45 45l-7.5-7.5L45 30z'/%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '80px 80px'
-        }} />
+    <div className={`min-h-screen ${isDarkMode ? 'dark' : ''}`}>
+      {/* Debug Theme Button */}
+      <div className="fixed top-20 right-4 z-50 p-4 bg-red-500 text-white rounded-lg">
+        <p>Theme: {isDarkMode ? 'Dark' : 'Light'}</p>
+        <button 
+          onClick={toggleTheme}
+          className="mt-2 px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
+        >
+          Toggle Theme
+        </button>
       </div>
-
-      <Header activeSection={activeSection} isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      
+      <Header 
+        activeSection={activeSection} 
+        isDarkMode={isDarkMode} 
+        toggleTheme={toggleTheme} 
+      />
+      
       <main>
         <Hero />
         <About />
+        <Services />
         <Skills />
         <Projects />
-        <Services />
         <Testimonials />
         <Blog />
         <Contact />
       </main>
+      
       <Footer />
     </div>
   );

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React CDN Test</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script>
+        console.log('React CDN test starting...');
+        
+        const { createElement } = React;
+        const { createRoot } = ReactDOM;
+        
+        function App() {
+            return createElement('div', {
+                style: {
+                    padding: '20px',
+                    backgroundColor: 'blue',
+                    color: 'white',
+                    fontSize: '24px'
+                }
+            }, [
+                createElement('h1', null, 'REACT CDN TEST'),
+                createElement('p', null, 'Si vous voyez ceci, React CDN fonctionne !'),
+                createElement('div', {
+                    id: 'projects',
+                    style: {
+                        padding: '20px',
+                        backgroundColor: 'red',
+                        color: 'white',
+                        marginTop: '20px'
+                    }
+                }, [
+                    createElement('h2', null, 'SECTION PROJETS - CDN'),
+                    createElement('p', null, 'Section projets via CDN')
+                ])
+            ]);
+        }
+        
+        const rootElement = document.getElementById('root');
+        console.log('Root element:', rootElement);
+        
+        if (rootElement) {
+            const root = createRoot(rootElement);
+            console.log('Root created, rendering App...');
+            root.render(createElement(App));
+            console.log('App rendered successfully');
+        } else {
+            console.error('Root element not found!');
+        }
+    </script>
+</body>
+</html>

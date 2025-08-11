@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Vite React</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="module">
+        console.log('Test Vite React starting...');
+        
+        try {
+            // Test d'import direct depuis Vite
+            const { createElement } = await import('http://localhost:5173/node_modules/.vite/deps/react.js?v=0b553bdc');
+            const { createRoot } = await import('http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=0b553bdc');
+            
+            console.log('React imports successful');
+            
+            // Test simple
+            const TestApp = () => {
+                return createElement('div', {
+                    style: {
+                        padding: '20px',
+                        backgroundColor: 'green',
+                        color: 'white',
+                        fontSize: '24px'
+                    }
+                }, [
+                    createElement('h1', null, 'TEST VITE REACT - DIRECT'),
+                    createElement('p', null, 'Si vous voyez ceci, React via Vite fonctionne !')
+                ]);
+            };
+            
+            const rootElement = document.getElementById('root');
+            console.log('Root element:', rootElement);
+            
+            if (rootElement) {
+                const root = createRoot(rootElement);
+                console.log('Root created, rendering TestApp...');
+                root.render(createElement(TestApp));
+                console.log('TestApp rendered successfully');
+            } else {
+                console.error('Root element not found!');
+            }
+            
+        } catch (error) {
+            console.error('Error in test:', error);
+            document.getElementById('root').innerHTML = '<div style="color: red; padding: 20px;">ERREUR: ' + error.message + '</div>';
+        }
+    </script>
+</body>
+</html>
