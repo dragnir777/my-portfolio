@@ -1,214 +1,84 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github, Filter, Search, Shield, Palette, FileText, Users, Smartphone, Database, Leaf } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import ProjectCard, { Project } from './projects/ProjectCard';
+import data from '../data/projects.json';
 
-const Projects = () => {
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+}
+
+const ProjectsSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'TechPole' | 'ESSITECH' | 'Freelance & Perso'>('all');
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Application Intendance Palais Présidentiel",
-      description: "Application web complète pour la gestion des ressources, suivi de projets, et administration avec sécurité renforcée.",
-      image: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600",
-      technologies: ["Node.js", "React", "MySQL", "Express", "JWT", "Tailwind"],
-      category: "gouvernemental",
-      github: "#",
-      demo: "#",
-      featured: true,
-      status: "Production",
-      year: "2024"
-    },
-    {
-      id: 2,
-      title: "Myredlwili - Suivi Cycle Menstruel",
-      description: "Plateforme complète de suivi du cycle menstruel avec intelligence artificielle pour conseils santé personnalisés.",
-      image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600",
-      technologies: ["React Native", "Node.js", "MongoDB", "TensorFlow", "Express"],
-      category: "sante",
-      github: "#",
-      demo: "#",
-      featured: true,
-      status: "Production",
-      year: "2024"
-    },
-    {
-      id: 3,
-      title: "PlantCare AI - Détection Maladies Plantes",
-      description: "Solution mobile utilisant l'intelligence artificielle pour détecter les maladies des plantes via photos.",
-      image: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=600",
-      technologies: ["React Native", "Python", "TensorFlow", "Node.js", "PostgreSQL"],
-      category: "agriculture",
-      github: "#",
-      demo: "#",
-      featured: true,
-      status: "Production",
-      year: "2024"
-    },
-    {
-      id: 4,
-      title: "POSTEMONEY - La Poste Burkina",
-      description: "Application mobile de transfert d'argent et services financiers avec interface optimisée.",
-      image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=600",
-      technologies: ["React Native", "Node.js", "MySQL", "REST API", "Firebase"],
-      category: "fintech",
-      github: "#",
-      demo: "#",
-      featured: false,
-      status: "Production",
-      year: "2023"
-    }
-  ];
+  const projects: Project[] = useMemo(() => {
+    return (data as any[]).map((p) => ({
+      ...p,
+      slug: slugify(p.title),
+    }));
+  }, []);
 
   const categories = [
-    { id: 'all', label: 'Tous les projets' },
-    { id: 'gouvernemental', label: 'Gouvernemental' },
-    { id: 'sante', label: 'Santé' },
-    { id: 'agriculture', label: 'Agriculture' },
-    { id: 'fintech', label: 'FinTech' }
+    { id: 'all' as const, label: 'Tous' },
+    { id: 'TechPole' as const, label: 'TechPole' },
+    { id: 'ESSITECH' as const, label: 'ESSITECH' },
+    { id: 'Freelance & Perso' as const, label: 'Freelance & Perso' },
   ];
 
-  const filteredProjects = projects.filter(project => {
-    const matchesFilter = activeFilter === 'all' || project.category === activeFilter;
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
-  });
+  const filtered = useMemo(() => {
+    if (activeFilter === 'all') return projects;
+    return projects.filter((p) => p.category === activeFilter);
+  }, [projects, activeFilter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-gray-900 text-white">
+    <section id="projects" ref={sectionRef} className="py-20 bg-deep-night text-off-white">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Mes <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Projets</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Découvrez mes réalisations techniques dans les secteurs gouvernemental, santé, agriculture et fintech.
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto rounded-full mt-6" />
+        <div className={`text-center mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Projets</h2>
+          <p className="text-lg text-gray-300">Sélection de réalisations de Miguel Y. Axison BAYALA au Burkina Faso</p>
+          <div className="w-24 h-1 bg-cyber-green mx-auto rounded-full mt-4" />
         </div>
 
-        {/* Test: Simple project count */}
-        <div className="text-center mb-8">
-          <p className="text-green-400 text-lg">
-            {projects.length} projets trouvés
-          </p>
-        </div>
-
-        {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {categories.map((c) => (
             <button
-              key={category.id}
-              onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                activeFilter === category.id
-                  ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              key={c.id}
+              onClick={() => setActiveFilter(c.id)}
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                activeFilter === c.id ? 'bg-cyber-green text-deep-night' : 'bg-gray-900/40 text-gray-300 hover:bg-gray-900/60 border border-gray-800'
               }`}
             >
-              {category.label}
+              {c.label}
             </button>
           ))}
         </div>
 
-        {/* Projects Grid - Simplified */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-gray-800 rounded-xl overflow-hidden hover:bg-gray-700 transition-all duration-300 border border-gray-700"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-green-500 text-white text-sm rounded-full">
-                    {project.status}
-                  </span>
-                  <span className="text-gray-400 text-sm">
-                    {project.year}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold mb-3 text-white">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-300 mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-gray-700 text-gray-300 text-sm rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex space-x-4">
-                  <a
-                    href={project.github}
-                    className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Github size={16} />
-                    <span>Code</span>
-                  </a>
-                  <a
-                    href={project.demo}
-                    className="flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors"
-                  >
-                    <ExternalLink size={16} />
-                    <span>Voir</span>
-                  </a>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {filtered.map((p, idx) => (
+            <div key={p.slug} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: `${idx * 50}ms` }}>
+              <ProjectCard project={p} />
             </div>
           ))}
-        </div>
-
-        {/* Debug info */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-400">
-            Projets filtrés: {filteredProjects.length} / {projects.length}
-          </p>
-          <p className="text-gray-400">
-            Filtre actif: {activeFilter}
-          </p>
         </div>
       </div>
     </section>
   );
 };
 
-export default Projects;
+export default ProjectsSection;

@@ -3,10 +3,9 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
-import Projects from './components/Projects';
+import ProjectsSection from './components/Projects';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
-import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -18,7 +17,7 @@ function App() {
     setIsLoaded(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'services', 'testimonials', 'blog', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'services', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach(section => {
@@ -49,10 +48,9 @@ function App() {
         <Hero isDarkMode={true} />
         <About />
         <Skills />
-        <Projects />
+        <ProjectsSection />
         <Services />
         <Testimonials />
-        <Blog />
         <Contact />
       </main>
       <Footer />

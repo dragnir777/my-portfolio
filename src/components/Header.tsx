@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   activeSection: string;
@@ -9,15 +10,16 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'home', label: 'Accueil' },
+    { id: 'about', label: 'À propos' },
     { id: 'services', label: 'Services' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'testimonials', label: 'Testimonials' },
-    { id: 'blog', label: 'Blog' },
+    { id: 'skills', label: 'Compétences' },
+    { id: 'projects', label: 'Projets' },
+    { id: 'testimonials', label: 'Témoignages' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -25,6 +27,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
     }
     setIsMenuOpen(false);
   };
