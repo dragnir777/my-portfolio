@@ -6,7 +6,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
-import Blog from './components/Blog';
+// import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -18,7 +18,7 @@ function App() {
     setIsLoaded(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'services', 'testimonials', 'blog', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'services', 'testimonials', /*'blog',*/ 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach(section => {
@@ -52,7 +52,7 @@ function App() {
         <Projects />
         <Services />
         <Testimonials />
-        <Blog />
+        {/* <Blog /> */}
         <Contact />
       </main>
       <Footer />

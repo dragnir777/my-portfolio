@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeaderProps {
   activeSection: string;
@@ -9,6 +10,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -22,9 +25,23 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
   ];
 
   const scrollToSection = (sectionId: string) => {
+    if (sectionId === 'blog') {
+      navigate('/blog');
+      setIsMenuOpen(false);
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // If not on home, navigate home then scroll
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
     }
     setIsMenuOpen(false);
   };
@@ -47,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                  activeSection === item.id
+                  (location.pathname === '/blog' && item.id === 'blog') || activeSection === item.id
                     ? 'text-blue-600 dark:text-blue-400'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
@@ -87,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`block w-full text-left px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                    activeSection === item.id
+                    (location.pathname === '/blog' && item.id === 'blog') || activeSection === item.id
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
