@@ -1,0 +1,112 @@
+[
+  {
+    "title": "GSPD – Gestion des dépenses de l’intendance du Palais",
+    "category": "TechPole",
+    "context": "Application web pour centraliser et suivre les dépenses de l’intendance du Palais présidentiel.",
+    "role": ["Modélisation", "Conception UI/UX", "Développement frontend"],
+    "stack": ["React.js", "Vite", "Tailwind CSS", "TypeScript", "API REST"],
+    "status": "Terminé",
+    "images": ["gspd-mockup.png"],
+    "summary": "Application web sécurisée pour la gestion et le suivi des dépenses.",
+    "confidential": true
+  },
+  {
+    "title": "APEC – Application mobile",
+    "category": "TechPole",
+    "context": "Application mobile interne pour l’Agence pour la Promotion de l’Emploi.",
+    "role": ["Assistance design UI/UX", "Tests fonctionnels", "Documentation technique", "Formation utilisateurs"],
+    "stack": ["React Native", "Android/iOS"],
+    "status": "Terminé",
+    "images": ["apec-ui.png"],
+    "summary": "Optimisation et assistance au développement d'une application de gestion interne.",
+    "confidential": true
+  },
+  {
+    "title": "Postemoney – Application mobile La Poste",
+    "category": "TechPole",
+    "context": "Solution de transfert d’argent et paiement mobile pour La Poste Burkina Faso.",
+    "role": ["Assistance UI/UX", "Tests", "Documentation technique"],
+    "stack": ["Mobile Android/iOS", "API Paiement"],
+    "status": "Terminé",
+    "images": ["postemoney-ui.png"],
+    "summary": "Application de paiement mobile sécurisée pour les clients de La Poste.",
+    "confidential": true
+  },
+  {
+    "title": "GCOB – Application Grande Chancellerie",
+    "category": "TechPole",
+    "context": "Application pour gérer les nominations et décorations nationales.",
+    "role": ["Tests", "Documentation technique"],
+    "stack": ["Web interne"],
+    "status": "Terminé",
+    "images": ["gcob-ui.png"],
+    "summary": "Outil interne pour la gestion administrative des distinctions.",
+    "confidential": true
+  },
+  {
+    "title": "Gestion RH et stock administration",
+    "category": "TechPole",
+    "context": "Application interne pour gérer les ressources humaines et les stocks.",
+    "role": ["Tests", "Documentation technique"],
+    "stack": ["Web interne"],
+    "status": "Terminé",
+    "images": ["rh-stock-ui.png"],
+    "summary": "Solution interne pour optimiser la gestion RH et stock.",
+    "confidential": true
+  },
+  {
+    "title": "PDI Deme",
+    "category": "TechPole",
+    "context": "Plateforme de gestion interne pour données administratives.",
+    "role": ["Tests", "Documentation technique"],
+    "stack": ["Web interne"],
+    "status": "Terminé",
+    "images": ["pdi-deme-ui.png"],
+    "summary": "Outil d’analyse et de gestion de données.",
+    "confidential": true
+  },
+  {
+    "title": "Location de véhicules",
+    "category": "ESSITECH",
+    "context": "Site web permettant la réservation et gestion de location de véhicules.",
+    "role": ["Modélisation", "UI/UX", "Frontend & Backend"],
+    "stack": ["React.js", "Bootstrap", "Node.js", "MySQL"],
+    "status": "Terminé",
+    "images": ["location-vehicule.png"],
+    "summary": "Site web complet pour la location de véhicules.",
+    "confidential": false
+  },
+  {
+    "title": "PlantCare AI",
+    "category": "Freelance & Perso",
+    "context": "Application IA pour détecter les maladies des plantes via photos.",
+    "role": ["Conception", "UI/UX", "Développement web et mobile"],
+    "stack": ["React.js", "Vite", "Tailwind CSS", "TypeScript", "React Native", "Node.js", "TensorFlow"],
+    "status": "En cours",
+    "images": ["plantcare-ui.png"],
+    "summary": "Application web et mobile IA pour détection de maladies végétales.",
+    "confidential": false
+  },
+  {
+    "title": "Myredlwili",
+    "category": "Freelance & Perso",
+    "context": "Application mobile pour suivi du cycle menstruel et conseils santé.",
+    "role": ["Conception", "UI/UX", "Développement mobile"],
+    "stack": ["React Native", "Node.js", "API IA", "MySQL"],
+    "status": "En cours",
+    "images": ["myredlwili-ui.png"],
+    "summary": "Application santé féminine avec suivi cycle et coaching IA.",
+    "confidential": false
+  },
+  {
+    "title": "Crypgo",
+    "category": "Freelance & Perso",
+    "context": "Plateforme de suivi crypto avec intégration API bot trading.",
+    "role": ["Conception", "UI/UX", "Frontend & Backend", "Intégration API"],
+    "stack": ["React.js", "Tailwind CSS", "Node.js", "API Trading"],
+    "status": "En cours",
+    "images": ["crypgo-ui.png"],
+    "summary": "Plateforme crypto avec signaux de trading automatisés.",
+    "confidential": false
+  }
+]
