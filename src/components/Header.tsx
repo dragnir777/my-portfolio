@@ -25,16 +25,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
   ];
 
   const scrollToSection = (sectionId: string) => {
-    if (sectionId === 'blog') {
-      navigate('/blog');
-      setIsMenuOpen(false);
-      return;
-    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // If not on home, navigate home then scroll
       if (location.pathname !== '/') {
         navigate('/');
         setTimeout(() => {
