@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
+import BlogIndex from './pages/BlogIndex.tsx';
+import BlogArticle from './pages/BlogArticle.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -11,8 +13,8 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/blog" lazy={async () => ({ Component: (await import('./pages/BlogIndex.tsx')).default })} />
-          <Route path="/blog/:slug" lazy={async () => ({ Component: (await import('./pages/BlogArticle.tsx')).default })} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
