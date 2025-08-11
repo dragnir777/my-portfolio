@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
     { id: 'services', label: 'Services' },
     { id: 'skills', label: 'Compétences' },
     { id: 'projects', label: 'Projets' },
-    { id: 'testimonials', label: 'Témoignages' },
+    // { id: 'testimonials', label: 'Témoignages' },
     { id: 'contact', label: 'Contact' },
   ];
 
