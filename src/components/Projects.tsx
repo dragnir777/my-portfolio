@@ -208,15 +208,15 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-gray-800/30">
+    <section id="projects" ref={sectionRef} className="py-20 bg-gray-800/30 dark:bg-gray-800/30 light:bg-gray-100">
       <div className="container mx-auto px-4">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} text-white dark:text-white light:text-gray-900`}>
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Mes <span className="bg-gradient-to-r from-cyber-green to-blue-500 bg-clip-text text-transparent">Projets</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 dark:text-gray-300 light:text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Découvrez mes réalisations techniques dans les secteurs gouvernemental, santé, agriculture et fintech, 
               avec un focus sur la sécurité, le design et la documentation.
             </p>
@@ -233,7 +233,7 @@ const Projects = () => {
               {featuredProjects.map((project, index) => (
                 <div
                   key={project.id}
-                  className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 hover:from-gray-800/80 hover:to-gray-700/80 transition-all duration-500 transform hover:scale-105 border border-gray-700 hover:border-cyber-green/50 shadow-xl hover:shadow-2xl"
+                  className="group relative overflow-hidden rounded-xl bg-gray-900/50 dark:bg-gray-900/50 light:bg-white hover:bg-gray-800/50 dark:hover:bg-gray-800/50 light:hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 border border-gray-700 dark:border-gray-700 light:border-gray-200 hover:border-gray-600 shadow-lg hover:shadow-xl"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -265,36 +265,36 @@ const Projects = () => {
                   </div>
 
                   <div className="p-6">
-                    <h4 className="text-xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors line-clamp-2">
+                    <h4 className="text-xl font-bold mb-3 text-white dark:text-white light:text-gray-900 group-hover:text-green-400 transition-colors line-clamp-2">
                       {project.title}
                     </h4>
                     
                     <div className="mb-4">
-                      <p className="text-sm text-gray-400 mb-2 font-inter">
+                      <p className="text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 mb-2 font-inter">
                         <strong className="text-blue-400">Contexte:</strong> {project.context}
                       </p>
-                      <p className="text-sm text-gray-400 font-inter">
+                      <p className="text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 font-inter">
                         <strong className="text-green-400">Rôle:</strong> {project.role}
                       </p>
                     </div>
 
-                    <p className="text-gray-300 mb-4 line-clamp-3 font-inter">
+                    <p className="text-gray-300 dark:text-gray-300 light:text-gray-700 mb-4 line-clamp-3 font-inter">
                       {project.description}
                     </p>
 
                     {/* Key Features */}
                     <div className="grid grid-cols-3 gap-2 mb-4">
-                      <div className="text-center p-2 bg-gray-800/50 rounded-lg">
+                      <div className="text-center p-2 bg-gray-800/50 dark:bg-gray-800/50 light:bg-gray-100 rounded-lg">
                         <Shield size={16} className="text-red-400 mx-auto mb-1" />
-                        <span className="text-xs text-gray-300">Sécurité</span>
+                        <span className="text-xs text-gray-300 dark:text-gray-300 light:text-gray-600">Sécurité</span>
                       </div>
-                      <div className="text-center p-2 bg-gray-800/50 rounded-lg">
+                      <div className="text-center p-2 bg-gray-800/50 dark:bg-gray-800/50 light:bg-gray-100 rounded-lg">
                         <Palette size={16} className="text-purple-400 mx-auto mb-1" />
-                        <span className="text-xs text-gray-300">Design</span>
+                        <span className="text-xs text-gray-300 dark:text-gray-300 light:text-gray-600">Design</span>
                       </div>
-                      <div className="text-center p-2 bg-gray-800/50 rounded-lg">
+                      <div className="text-center p-2 bg-gray-800/50 dark:bg-gray-800/50 light:bg-gray-100 rounded-lg">
                         <FileText size={16} className="text-blue-400 mx-auto mb-1" />
-                        <span className="text-xs text-gray-300">Docs</span>
+                        <span className="text-xs text-gray-300 dark:text-gray-300 light:text-gray-600">Docs</span>
                       </div>
                     </div>
 
@@ -302,7 +302,7 @@ const Projects = () => {
                       {project.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full border border-gray-600"
+                          className="px-2 py-1 bg-gray-800 dark:bg-gray-800 light:bg-gray-200 text-gray-300 dark:text-gray-300 light:text-gray-700 text-xs rounded-full border border-gray-600 dark:border-gray-600 light:border-gray-300"
                         >
                           {tech}
                         </span>
@@ -317,7 +317,7 @@ const Projects = () => {
                     <div className="flex space-x-4">
                       <a
                         href={project.github}
-                        className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+                        className="flex items-center space-x-2 text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 transition-colors"
                       >
                         <Github size={16} />
                         <span className="text-sm">Code</span>
@@ -347,7 +347,7 @@ const Projects = () => {
                   placeholder="Rechercher un projet..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-green-400 focus:outline-none transition-colors"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 dark:bg-gray-800/50 light:bg-white border border-gray-700 dark:border-gray-700 light:border-gray-300 rounded-xl text-white dark:text-white light:text-gray-900 placeholder-gray-400 focus:border-green-400 focus:outline-none transition-colors"
                 />
               </div>
 
@@ -361,7 +361,7 @@ const Projects = () => {
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-inter font-medium transition-all duration-300 ${
                       activeFilter === category.id
                         ? 'bg-gradient-to-r from-green-400 to-blue-500 text-white shadow-lg'
-                        : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
+                        : 'bg-gray-800/50 dark:bg-gray-800/50 light:bg-white text-gray-300 dark:text-gray-300 light:text-gray-700 hover:bg-gray-700/50 dark:hover:bg-gray-700/50 light:hover:bg-gray-100 border border-gray-700 dark:border-gray-700 light:border-gray-300'
                     }`}
                   >
                     {category.icon}
@@ -403,37 +403,37 @@ const Projects = () => {
                 </div>
 
                 <div className="p-6">
-                  <h4 className="text-lg font-bold mb-2 text-white group-hover:text-green-400 transition-colors line-clamp-2">
+                  <h4 className="text-lg font-bold mb-2 text-white dark:text-white light:text-gray-900 group-hover:text-green-400 transition-colors line-clamp-2">
                     {project.title}
                   </h4>
                   
                   <div className="mb-3">
-                    <p className="text-xs text-gray-400 mb-1">
+                    <p className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 mb-1">
                       <strong className="text-blue-400">Rôle:</strong> {project.role.split(' - ')[0]}
                     </p>
                   </div>
 
-                  <p className="text-gray-300 mb-4 text-sm line-clamp-2">
+                  <p className="text-gray-300 dark:text-gray-300 light:text-gray-700 mb-4 text-sm line-clamp-2">
                     {project.description}
                   </p>
 
                   {/* Detailed Features */}
                   <div className="mb-4">
                     <div className="grid grid-cols-3 gap-2 text-xs">
-                      <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-2 text-center">
+                      <div className="bg-red-500/20 dark:bg-red-500/20 light:bg-red-100 border border-red-500/30 dark:border-red-500/30 light:border-red-200 rounded-lg p-2 text-center">
                         <Shield size={14} className="text-red-400 mx-auto mb-1" />
-                        <div className="text-red-300 font-medium">Sécurité</div>
-                        <div className="text-gray-400">{project.features.security.length} points</div>
+                        <div className="text-red-300 dark:text-red-300 light:text-red-600 font-medium">Sécurité</div>
+                        <div className="text-gray-400 dark:text-gray-400 light:text-gray-600">{project.features.security.length} points</div>
                       </div>
-                      <div className="bg-purple-500/20 border border-purple-500/30 rounded-lg p-2 text-center">
+                      <div className="bg-purple-500/20 dark:bg-purple-500/20 light:bg-purple-100 border border-purple-500/30 dark:border-purple-500/30 light:border-purple-200 rounded-lg p-2 text-center">
                         <Palette size={14} className="text-purple-400 mx-auto mb-1" />
-                        <div className="text-purple-300 font-medium">Design</div>
-                        <div className="text-gray-400">{project.features.design.length} aspects</div>
+                        <div className="text-purple-300 dark:text-purple-300 light:text-purple-600 font-medium">Design</div>
+                        <div className="text-gray-400 dark:text-gray-400 light:text-gray-600">{project.features.design.length} aspects</div>
                       </div>
-                      <div className="bg-blue-500/20 border border-blue-500/30 rounded-lg p-2 text-center">
+                      <div className="bg-blue-500/20 dark:bg-blue-500/20 light:bg-blue-100 border border-blue-500/30 dark:border-blue-500/30 light:border-blue-200 rounded-lg p-2 text-center">
                         <FileText size={14} className="text-blue-400 mx-auto mb-1" />
-                        <div className="text-blue-300 font-medium">Docs</div>
-                        <div className="text-gray-400">{project.features.documentation.length} types</div>
+                        <div className="text-blue-300 dark:text-blue-300 light:text-blue-600 font-medium">Docs</div>
+                        <div className="text-gray-400 dark:text-gray-400 light:text-gray-600">{project.features.documentation.length} types</div>
                       </div>
                     </div>
                   </div>
@@ -442,7 +442,7 @@ const Projects = () => {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full"
+                        className="px-2 py-1 bg-gray-800 dark:bg-gray-800 light:bg-gray-200 text-gray-300 dark:text-gray-300 light:text-gray-700 text-xs rounded-full"
                       >
                         {tech}
                       </span>
@@ -457,7 +457,7 @@ const Projects = () => {
                   <div className="flex space-x-4">
                     <a
                       href={project.github}
-                      className="flex items-center space-x-1 text-gray-400 hover:text-white transition-colors text-sm"
+                      className="flex items-center space-x-1 text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 transition-colors text-sm"
                     >
                       <Github size={14} />
                       <span>Code</span>
@@ -478,16 +478,16 @@ const Projects = () => {
           {/* No results */}
           {filteredProjects.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">Aucun projet trouvé pour ces critères.</p>
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 text-lg">Aucun projet trouvé pour ces critères.</p>
             </div>
           )}
 
           {/* Call to Action */}
           <div className="text-center bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-12 border border-green-500/20">
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-2xl font-bold text-white dark:text-white light:text-gray-900 mb-4">
               Intéressé par mes réalisations ?
             </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-300 dark:text-gray-300 light:text-gray-700 mb-6 max-w-2xl mx-auto">
               Discutons de votre prochain projet ! Je peux vous accompagner dans le développement, 
               la sécurisation et la documentation de vos applications.
             </p>

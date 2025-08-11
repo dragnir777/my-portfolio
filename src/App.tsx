@@ -56,7 +56,7 @@ function App() {
 
       <Header activeSection={activeSection} isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <main>
-        <Hero />
+        <Hero isDarkMode={isDarkMode} />
         <About />
         <Skills />
         <Projects />
