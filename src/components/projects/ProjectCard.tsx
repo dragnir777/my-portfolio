@@ -9,6 +9,7 @@ export type Project = {
   stack: string[];
   status: string;
   images: string[];
+  coverImage: string | null;
   summary: string;
   confidential: boolean;
   slug: string;
@@ -22,8 +23,32 @@ function cn(...classes: Array<string | false | undefined>) {
 
 const placeholder = 'https://via.placeholder.com/800x600/0A0F1C/FFFFFF?text=Projet';
 
+const getImagePath = (project: Project, imageName: string | null) => {
+  if (!imageName) return placeholder;
+  
+  // Déterminer le dossier basé sur le titre du projet
+  let folder = '';
+  if (project.title.includes('GSPD')) folder = 'gspd';
+  else if (project.title.includes('APEC')) folder = 'apec';
+  else if (project.title.includes('Postemoney')) folder = 'postemoney';
+  else if (project.title.includes('RH')) folder = 'rh';
+  else if (project.title.includes('PlantCare')) folder = 'plantcare';
+  else if (project.title.includes('Crypgo')) folder = 'crypgo';
+  
+  if (folder) {
+    // Utiliser l'import dynamique pour les assets
+    try {
+      return new URL(`../../assets/${folder}/${imageName}`, import.meta.url).href;
+    } catch {
+      return placeholder;
+    }
+  }
+  
+  return placeholder;
+};
+
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const imageSrc = project.images?.[0] ? `/projects/${project.images[0]}` : placeholder;
+  const imageSrc = getImagePath(project, project.coverImage);
 
   return (
     <div className="group relative rounded-xl overflow-hidden border border-gray-800 bg-gray-900/40 hover:bg-gray-900/60 hover:border-gray-700 transition-all">
@@ -32,7 +57,10 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           src={imageSrc}
           alt={project.title}
           loading="lazy"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
+          onError={(e) => { 
+            console.log(`Erreur de chargement pour ${project.title}:`, imageSrc);
+            (e.currentTarget as HTMLImageElement).src = placeholder; 
+          }}
           className={cn(
             'w-full h-full object-cover transition-transform duration-500',
             'group-hover:scale-105',

@@ -14,6 +14,27 @@ function slugify(text: string) {
 
 const placeholder = 'https://via.placeholder.com/1000x700/0A0F1C/FFFFFF?text=Projet';
 
+const getImagePath = (project: any, imageName: string) => {
+  // Déterminer le dossier basé sur le titre du projet
+  let folder = '';
+  if (project.title.includes('GSPD')) folder = 'gspd';
+  else if (project.title.includes('APEC')) folder = 'apec';
+  else if (project.title.includes('Postemoney')) folder = 'postemoney';
+  else if (project.title.includes('RH')) folder = 'rh';
+  else if (project.title.includes('PlantCare')) folder = 'plantcare';
+  else if (project.title.includes('Crypgo')) folder = 'crypgo';
+  
+  if (folder) {
+    try {
+      return new URL(`../assets/${folder}/${imageName}`, import.meta.url).href;
+    } catch {
+      return placeholder;
+    }
+  }
+  
+  return placeholder;
+};
+
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => {
@@ -72,38 +93,47 @@ const ProjectDetail: React.FC = () => {
         <div className="grid md:grid-cols-5 gap-6 items-start">
           <div className="md:col-span-3">
             {/* Image principale */}
-            <button
-              type="button"
-              className="w-full rounded-xl overflow-hidden border border-gray-800 bg-gray-900/40 group"
-              onClick={() => openLightbox(0)}
-              disabled={!canPreview}
-            >
-              <img
-                src={images[0] ? `/projects/${images[0]}` : placeholder}
-                alt={project.title}
-                loading="lazy"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
-                className={`${project.confidential ? 'blur' : 'group-hover:scale-[1.01]'} w-full h-auto object-cover transition-transform duration-300`}
-              />
-            </button>
+            {images.length > 0 ? (
+              <button
+                type="button"
+                className="w-full rounded-xl overflow-hidden border border-gray-800 bg-gray-900/40 group"
+                onClick={() => openLightbox(0)}
+                disabled={!canPreview}
+              >
+                <img
+                  src={getImagePath(project, images[0])}
+                  alt={project.title}
+                  loading="lazy"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
+                  className={`${project.confidential ? 'blur' : 'group-hover:scale-[1.01]'} w-full h-auto object-cover transition-transform duration-300`}
+                />
+              </button>
+            ) : (
+              <div className="w-full h-64 rounded-xl border border-gray-800 bg-gray-900/40 flex items-center justify-center">
+                <div className="text-center text-gray-400">
+                  <div className="text-lg font-semibold mb-2">Pas d'images disponibles</div>
+                  <div className="text-sm">Ce projet ne contient pas d'images</div>
+                </div>
+              </div>
+            )}
             {project.confidential && (
               <div className="mt-3 text-sm text-gray-300">Projet confidentiel — Détails disponibles sur demande.</div>
             )}
 
             {/* Grille d’images */}
-            {images.length > 0 && (
+            {images.length > 1 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
-                {images.map((img, idx) => (
+                {images.slice(1).map((img, idx) => (
                   <button
                     type="button"
                     key={img + idx}
-                    onClick={() => openLightbox(idx)}
+                    onClick={() => openLightbox(idx + 1)}
                     disabled={!canPreview}
                     className="rounded-lg overflow-hidden border border-gray-800 bg-gray-900/40 group"
                   >
                     <img
-                      src={`/projects/${img}`}
-                      alt={`mockup ${idx + 1}`}
+                      src={getImagePath(project, img)}
+                      alt={`${project.title} - Image ${idx + 2}`}
                       loading="lazy"
                       onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
                       className={`${project.confidential ? 'blur' : 'group-hover:scale-105'} object-cover h-32 w-full transition-transform duration-300`}
@@ -174,7 +204,7 @@ const ProjectDetail: React.FC = () => {
 
           <div className="max-w-5xl max-h-[85vh] w-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
-              src={images[activeIndex] ? `/projects/${images[activeIndex]}` : placeholder}
+              src={images[activeIndex] ? getImagePath(project, images[activeIndex]) : placeholder}
               alt="aperçu"
               className="w-auto h-auto max-w-full max-h-[85vh] object-contain shadow-2xl rounded-lg"
             />

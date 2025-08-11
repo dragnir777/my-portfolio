@@ -1,34 +1,37 @@
 [
   {
-    "title": "GSPD – Gestion des dépenses de l’intendance du Palais",
+    "title": "GSPD – Gestion des dépenses de l'intendance du Palais",
     "category": "TechPole",
-    "context": "Application web pour centraliser et suivre les dépenses de l’intendance du Palais présidentiel.",
+    "context": "Application web pour centraliser et suivre les dépenses de l'intendance du Palais présidentiel.",
     "role": ["Modélisation", "Conception UI/UX", "Développement frontend"],
     "stack": ["React.js", "Vite", "Tailwind CSS", "TypeScript", "API REST"],
     "status": "Terminé",
-    "images": ["gspd-mockup.png"],
+    "images": ["gspd1.png", "gspd2.png", "gspd3.png", "gspd4.png", "gspd5.png", "gspd6.png", "gspd7.png", "gspd8.png"],
+    "coverImage": "gspd1.png",
     "summary": "Application web sécurisée pour la gestion et le suivi des dépenses.",
     "confidential": true
   },
   {
     "title": "APEC – Application mobile",
     "category": "TechPole",
-    "context": "Application mobile interne pour l’Agence pour la Promotion de l’Emploi.",
+    "context": "Application mobile interne pour l'Agence pour la Promotion de l'Emploi.",
     "role": ["Assistance design UI/UX", "Tests fonctionnels", "Documentation technique", "Formation utilisateurs"],
     "stack": ["React Native", "Android/iOS"],
     "status": "Terminé",
-    "images": ["apec-ui.png"],
+    "images": ["apec1.jpg", "apec2.jpg", "apec3.jpg"],
+    "coverImage": "apec1.jpg",
     "summary": "Optimisation et assistance au développement d'une application de gestion interne.",
     "confidential": true
   },
   {
     "title": "Postemoney – Application mobile La Poste",
     "category": "TechPole",
-    "context": "Solution de transfert d’argent et paiement mobile pour La Poste Burkina Faso.",
+    "context": "Solution de transfert d'argent et paiement mobile pour La Poste Burkina Faso.",
     "role": ["Assistance UI/UX", "Tests", "Documentation technique"],
     "stack": ["Mobile Android/iOS", "API Paiement"],
     "status": "Terminé",
-    "images": ["postemoney-ui.png"],
+    "images": ["postemoney1.png", "postemoney2.png", "postemoney3.png", "postemoney4.png"],
+    "coverImage": "postemoney1.png",
     "summary": "Application de paiement mobile sécurisée pour les clients de La Poste.",
     "confidential": true
   },
@@ -39,7 +42,8 @@
     "role": ["Tests", "Documentation technique"],
     "stack": ["Web interne"],
     "status": "Terminé",
-    "images": ["gcob-ui.png"],
+    "images": [],
+    "coverImage": null,
     "summary": "Outil interne pour la gestion administrative des distinctions.",
     "confidential": true
   },
@@ -50,7 +54,8 @@
     "role": ["Tests", "Documentation technique"],
     "stack": ["Web interne"],
     "status": "Terminé",
-    "images": ["rh-stock-ui.png"],
+    "images": ["rh1.png", "rh2.png", "rh3.png", "rh4.png", "rh5.png"],
+    "coverImage": "rh1.png",
     "summary": "Solution interne pour optimiser la gestion RH et stock.",
     "confidential": true
   },
@@ -61,8 +66,9 @@
     "role": ["Tests", "Documentation technique"],
     "stack": ["Web interne"],
     "status": "Terminé",
-    "images": ["pdi-deme-ui.png"],
-    "summary": "Outil d’analyse et de gestion de données.",
+    "images": [],
+    "coverImage": null,
+    "summary": "Outil d'analyse et de gestion de données.",
     "confidential": true
   },
   {
@@ -72,7 +78,8 @@
     "role": ["Modélisation", "UI/UX", "Frontend & Backend"],
     "stack": ["React.js", "Bootstrap", "Node.js", "MySQL"],
     "status": "Terminé",
-    "images": ["location-vehicule.png"],
+    "images": [],
+    "coverImage": null,
     "summary": "Site web complet pour la location de véhicules.",
     "confidential": false
   },
@@ -83,7 +90,8 @@
     "role": ["Conception", "UI/UX", "Développement web et mobile"],
     "stack": ["React.js", "Vite", "Tailwind CSS", "TypeScript", "React Native", "Node.js", "TensorFlow"],
     "status": "En cours",
-    "images": ["../assets/plantcare1.png","../assets/plantcare2.png","../assets/plantcare3.png","../assets/plantcare4.png","../assets/plantcare5.png","../assets/plantcare6.png","../assets/plantcare7.png"],
+    "images": ["plantcare1.png", "plantcare2.png", "plantcare3.png", "plantcare4.png", "plantcare5.png", "plantcare6.png", "plantcare7.png"],
+    "coverImage": "plantcare1.png",
     "summary": "Application web et mobile IA pour détection de maladies végétales.",
     "confidential": false
   },
@@ -94,7 +102,8 @@
     "role": ["Conception", "UI/UX", "Développement mobile"],
     "stack": ["React Native", "Node.js", "API IA", "MySQL"],
     "status": "En cours",
-    "images": ["myredlwili-ui.png"],
+    "images": [],
+    "coverImage": null,
     "summary": "Application santé féminine avec suivi cycle et coaching IA.",
     "confidential": false
   },
@@ -105,7 +114,8 @@
     "role": ["Conception", "UI/UX", "Frontend & Backend", "Intégration API"],
     "stack": ["React.js", "Tailwind CSS", "Node.js", "API Trading"],
     "status": "En cours",
-    "images": ["crypgo-ui.png"],
+    "images": ["crypgo1.png", "crypgo2.png", "crypgo3.png", "crypgo4.png", "crypgo5.png", "crypgo6.png"],
+    "coverImage": "crypgo1.png",
     "summary": "Plateforme crypto avec signaux de trading automatisés.",
     "confidential": false
   }
