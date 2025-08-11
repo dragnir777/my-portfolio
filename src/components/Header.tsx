@@ -14,13 +14,12 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
   const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'home', label: 'Accueil' },
+    { id: 'about', label: 'À propos' },
     { id: 'services', label: 'Services' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'testimonials', label: 'Testimonials' },
-    { id: 'blog', label: 'Blog' },
+    { id: 'skills', label: 'Compétences' },
+    { id: 'projects', label: 'Projets' },
+    { id: 'testimonials', label: 'Témoignages' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -58,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                  (location.pathname === '/blog' && item.id === 'blog') || activeSection === item.id
+                  activeSection === item.id
                     ? 'text-blue-600 dark:text-blue-400'
                     : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                 }`}
@@ -98,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, isDarkMode, toggleTheme 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`block w-full text-left px-3 py-2 text-base font-medium transition-colors duration-200 ${
-                    (location.pathname === '/blog' && item.id === 'blog') || activeSection === item.id
+                    activeSection === item.id
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
