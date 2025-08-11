@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Github, Linkedin, MessageCircle } from 'lucide-react';
-
+import photo from '../assets/photo.png';
 interface HeroProps {
   isDarkMode: boolean;
 }
@@ -34,11 +34,11 @@ const Hero: React.FC<HeroProps> = () => {
           <div className="relative inline-block mb-8">
             <div className="w-52 h-52 mx-auto rounded-full bg-gradient-to-br from-green-400 to-blue-500 p-1 shadow-2xl">
               <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
-                <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
-                  alt="Axison BAYALA"
-                  className="w-48 h-48 rounded-full object-cover"
-                />
+              <img
+  src={photo}
+  alt="Axison BAYALA"
+  className="w-48 h-48 rounded-full object-cover"
+/>
               </div>
             </div>
             <div className="absolute -bottom-2 -right-2 w-14 h-14 bg-green-400 rounded-full flex items-center justify-center animate-bounce shadow-lg">

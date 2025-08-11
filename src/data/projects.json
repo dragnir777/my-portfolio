@@ -83,7 +83,7 @@
     "role": ["Conception", "UI/UX", "Développement web et mobile"],
     "stack": ["React.js", "Vite", "Tailwind CSS", "TypeScript", "React Native", "Node.js", "TensorFlow"],
     "status": "En cours",
-    "images": ["plantcare-ui.png"],
+    "images": ["../assets/plantcare1.png","../assets/plantcare2.png","../assets/plantcare3.png","../assets/plantcare4.png","../assets/plantcare5.png","../assets/plantcare6.png","../assets/plantcare7.png"],
     "summary": "Application web et mobile IA pour détection de maladies végétales.",
     "confidential": false
   },
