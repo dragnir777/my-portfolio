@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import data from '../data/projects.json';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 function slugify(text: string) {
   return text
@@ -20,6 +20,22 @@ const ProjectDetail: React.FC = () => {
     return (data as any[]).map((p) => ({ ...p, slug: slugify(p.title) })).find((p) => p.slug === slug);
   }, [slug]);
 
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const images: string[] = useMemo(() => Array.isArray(project?.images) ? project!.images : [], [project]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowRight') setActiveIndex((i) => (i + 1) % images.length);
+      if (e.key === 'ArrowLeft') setActiveIndex((i) => (i - 1 + images.length) % images.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxOpen, images.length]);
+
   if (!project) {
     return (
       <div className="min-h-screen bg-deep-night text-off-white flex items-center justify-center p-6">
@@ -31,6 +47,17 @@ const ProjectDetail: React.FC = () => {
       </div>
     );
   }
+
+  const canPreview = !project.confidential && images.length > 0;
+
+  const openLightbox = (idx: number) => {
+    if (!canPreview) return;
+    setActiveIndex(idx);
+    setLightboxOpen(true);
+  };
+
+  const next = () => setActiveIndex((i) => (i + 1) % images.length);
+  const prev = () => setActiveIndex((i) => (i - 1 + images.length) % images.length);
 
   return (
     <div className="min-h-screen bg-deep-night text-off-white">
@@ -44,23 +71,44 @@ const ProjectDetail: React.FC = () => {
 
         <div className="grid md:grid-cols-5 gap-6 items-start">
           <div className="md:col-span-3">
-            <div className="rounded-xl overflow-hidden border border-gray-800 bg-gray-900/40">
+            {/* Image principale */}
+            <button
+              type="button"
+              className="w-full rounded-xl overflow-hidden border border-gray-800 bg-gray-900/40 group"
+              onClick={() => openLightbox(0)}
+              disabled={!canPreview}
+            >
               <img
-                src={project.images?.[0] ? `/projects/${project.images[0]}` : placeholder}
+                src={images[0] ? `/projects/${images[0]}` : placeholder}
                 alt={project.title}
                 loading="lazy"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
-                className={project.confidential ? 'w-full h-auto object-cover blur' : 'w-full h-auto object-cover'}
+                className={`${project.confidential ? 'blur' : 'group-hover:scale-[1.01]'} w-full h-auto object-cover transition-transform duration-300`}
               />
-            </div>
+            </button>
             {project.confidential && (
               <div className="mt-3 text-sm text-gray-300">Projet confidentiel — Détails disponibles sur demande.</div>
             )}
 
-            {Array.isArray(project.images) && project.images.length > 1 && (
+            {/* Grille d’images */}
+            {images.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
-                {project.images.slice(1).map((img: string) => (
-                  <img key={img} src={`/projects/${img}`} alt="mockup" loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }} className="rounded-lg border border-gray-800 object-cover h-32 w-full" />
+                {images.map((img, idx) => (
+                  <button
+                    type="button"
+                    key={img + idx}
+                    onClick={() => openLightbox(idx)}
+                    disabled={!canPreview}
+                    className="rounded-lg overflow-hidden border border-gray-800 bg-gray-900/40 group"
+                  >
+                    <img
+                      src={`/projects/${img}`}
+                      alt={`mockup ${idx + 1}`}
+                      loading="lazy"
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).src = placeholder; }}
+                      className={`${project.confidential ? 'blur' : 'group-hover:scale-105'} object-cover h-32 w-full transition-transform duration-300`}
+                    />
+                  </button>
                 ))}
               </div>
             )}
@@ -112,6 +160,31 @@ const ProjectDetail: React.FC = () => {
           </aside>
         </div>
       </div>
+
+      {/* Lightbox plein écran */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
+          <button aria-label="Fermer" onClick={(e) => { e.stopPropagation(); setLightboxOpen(false); }} className="absolute top-4 right-4 p-2 rounded-full bg-gray-900/80 text-off-white hover:bg-gray-800">
+            <X size={20} />
+          </button>
+
+          <button aria-label="Précédent" onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 md:left-8 p-2 rounded-full bg-gray-900/70 text-off-white hover:bg-gray-800">
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="max-w-5xl max-h-[85vh] w-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={images[activeIndex] ? `/projects/${images[activeIndex]}` : placeholder}
+              alt="aperçu"
+              className="w-auto h-auto max-w-full max-h-[85vh] object-contain shadow-2xl rounded-lg"
+            />
+          </div>
+
+          <button aria-label="Suivant" onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 md:right-8 p-2 rounded-full bg-gray-900/70 text-off-white hover:bg-gray-800">
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
