@@ -356,7 +356,7 @@ const Contact = () => {
                   Besoin d'une réponse rapide ?
                 </p>
                 <a
-                  href="https://wa.me/22670000000"
+                  href="https://wa.me/0022677715148"
                   className="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg text-white font-semibold transition-all duration-300 transform hover:scale-105"
                 >
                   <MessageCircle size={20} className="mr-2" />
