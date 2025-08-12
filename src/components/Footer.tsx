@@ -40,12 +40,12 @@ const Footer = () => {
     },
     {
       icon: <Linkedin size={20} />,
-      href: 'https://linkedin.com/in/axisonbayala',
+      href: 'https://www.linkedin.com/in/axison-bayala-ab55282b5/',
       label: 'LinkedIn'
     },
     {
       icon: <MessageCircle size={20} />,
-      href: 'https://wa.me/22670000000',
+      href: 'https://wa.me/0022677715148',
       label: 'WhatsApp'
     },
     {
@@ -151,10 +151,10 @@ const Footer = () => {
               <div>
                 <div className="text-blue-400 font-medium mb-1">Téléphone</div>
                 <a
-                  href="tel:+22670000000"
+                  href="tel:+22678606005"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  +226 70 XX XX XX
+                  +226 78 60 60 05
                 </a>
               </div>
 

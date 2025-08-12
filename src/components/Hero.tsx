@@ -66,13 +66,13 @@ const Hero: React.FC<HeroProps> = () => {
 
           {/* Social Links */}
           <div className="flex items-center justify-center space-x-6 mb-12">
-            <a href="#" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
+            <a href="https://github.com/axisonbayala" target="_blank" rel="noopener noreferrer" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
               <Github size={24} className="text-white" />
             </a>
-            <a href="#" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
+            <a href="https://www.linkedin.com/in/axison-bayala-ab55282b5/" target="_blank" rel="noopener noreferrer" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
               <Linkedin size={24} className="text-blue-400" />
             </a>
-            <a href="#" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
+            <a href="https://wa.me/0022677715148" target="_blank" rel="noopener noreferrer" className="p-4 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 hover:scale-110 transform shadow-lg">
               <MessageCircle size={24} className="text-green-400" />
             </a>
           </div>

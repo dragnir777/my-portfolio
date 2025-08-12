@@ -77,8 +77,8 @@ const Contact = () => {
     {
       icon: <Phone className="text-blue-400" size={24} />,
       label: "Téléphone",
-      value: "+226 70 XX XX XX",
-      link: "tel:+22670000000"
+      value: "+226 78 60 60 05",
+      link: "tel:+22678606005"
     },
     {
       icon: <MapPin className="text-purple-400" size={24} />,
@@ -89,8 +89,8 @@ const Contact = () => {
     {
       icon: <MessageCircle className="text-green-500" size={24} />,
       label: "WhatsApp",
-      value: "+226 70 XX XX XX",
-      link: "https://wa.me/22670000000"
+      value: "+226 77 71 51 48",
+      link: "https://wa.me/0022677715148"
     }
   ];
 
@@ -104,13 +104,13 @@ const Contact = () => {
     {
       icon: <Linkedin size={24} />,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/axisonbayala",
+      url: "https://www.linkedin.com/in/axison-bayala-ab55282b5/",
       color: "hover:text-blue-400"
     },
     {
       icon: <MessageCircle size={24} />,
       label: "WhatsApp",
-      url: "https://wa.me/22670000000",
+      url: "https://wa.me/0022677715148",
       color: "hover:text-green-400"
     }
   ];

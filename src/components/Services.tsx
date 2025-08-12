@@ -292,7 +292,7 @@ const Services = () => {
                 Demander un devis
               </a>
               <a
-                href="https://wa.me/22670000000"
+                href="https://wa.me/0022677715148"
                 className="inline-flex items-center justify-center px-8 py-4 border border-gray-600 hover:border-green-400 rounded-full text-gray-300 hover:text-green-400 font-semibold transition-all duration-300"
               >
                 WhatsApp
