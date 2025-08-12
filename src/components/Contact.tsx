@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   Mail, 
   Phone, 
@@ -51,8 +52,24 @@ const Contact = () => {
     e.preventDefault();
     setFormStatus('loading');
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Configuration EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'bayalaaxison@hotmail.com'
+      };
+
+      // Envoyer l'email via EmailJS
+      await emailjs.send(
+        'service_portfolio', // Service ID (à configurer)
+        'template_contact', // Template ID (à configurer)
+        templateParams,
+        'your_public_key' // Public Key (à configurer)
+      );
+
       setFormStatus('success');
       setFormData({
         name: '',
@@ -64,15 +81,22 @@ const Contact = () => {
       setTimeout(() => {
         setFormStatus('idle');
       }, 5000);
-    }, 2000);
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      setFormStatus('error');
+      
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
+    }
   };
 
   const contactInfo = [
     {
       icon: <Mail className="text-green-400" size={24} />,
       label: "Email",
-      value: "contact@axisonbayala.dev",
-      link: "mailto:contact@axisonbayala.dev"
+      value: "bayalaaxison@hotmail.com",
+      link: "mailto:bayalaaxison@hotmail.com"
     },
     {
       icon: <Phone className="text-blue-400" size={24} />,
@@ -229,7 +253,7 @@ const Contact = () => {
                   {formStatus === 'error' && (
                     <div className="flex items-center p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-400">
                       <AlertCircle size={20} className="mr-3" />
-                      <span>Erreur lors de l'envoi. Veuillez réessayer ou me contacter directement.</span>
+                      <span>Erreur lors de l'envoi. Veuillez réessayer ou me contacter directement à bayalaaxison@hotmail.com</span>
                     </div>
                   )}
 

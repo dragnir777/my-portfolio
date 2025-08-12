@@ -50,7 +50,7 @@ const Footer = () => {
     },
     {
       icon: <Mail size={20} />,
-      href: 'mailto:contact@axisonbayala.dev',
+      href: 'mailto:bayalaaxison@hotmail.com',
       label: 'Email'
     }
   ];
@@ -141,10 +141,10 @@ const Footer = () => {
               <div>
                 <div className="text-green-400 font-medium mb-1">Email</div>
                 <a
-                  href="mailto:contact@axisonbayala.dev"
+                  href="mailto:bayalaaxison@hotmail.com"
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  contact@axisonbayala.dev
+                  bayalaaxison@hotmail.com
                 </a>
               </div>
               
