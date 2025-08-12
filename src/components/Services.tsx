@@ -46,8 +46,8 @@ const Services = () => {
         "Tests unitaires",
         "Déploiement cloud"
       ],
-      price: "À partir de 500€",
-      duration: "2-4 semaines",
+    
+      
       color: "from-green-400 to-green-600"
     },
     {
@@ -63,8 +63,7 @@ const Services = () => {
         "Optimisation performance",
         "Tests e2e"
       ],
-      price: "À partir de 800€",
-      duration: "3-6 semaines",
+     
       color: "from-blue-400 to-blue-600"
     },
     {
@@ -80,8 +79,7 @@ const Services = () => {
         "Analytics tracking",
         "Maintenance incluse"
       ],
-      price: "À partir de 300€",
-      duration: "1-2 semaines",
+      
       color: "from-purple-400 to-purple-600"
     },
     {
@@ -97,8 +95,7 @@ const Services = () => {
         "Performance améliorée",
         "Formation équipe"
       ],
-      price: "À partir de 600€",
-      duration: "2-5 semaines",
+      
       color: "from-cyan-400 to-cyan-600"
     },
     {
@@ -114,8 +111,7 @@ const Services = () => {
         "Backup strategy",
         "Documentation complète"
       ],
-      price: "À partir de 400€",
-      duration: "1-3 semaines",
+      
       color: "from-yellow-400 to-yellow-600"
     },
     {
@@ -131,8 +127,7 @@ const Services = () => {
         "Open source options",
         "Impact measurement"
       ],
-      price: "Tarifs négociables",
-      duration: "Variable",
+      
       color: "from-red-400 to-red-600"
     }
   ];
