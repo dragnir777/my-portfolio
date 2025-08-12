@@ -64,10 +64,10 @@ const Contact = () => {
 
       // Envoyer l'email via EmailJS
       await emailjs.send(
-        'service_portfolio', // Service ID (à configurer)
-        'template_contact', // Template ID (à configurer)
+        'service_wlptxcw', // Service ID (à configurer)
+        'template_e94erw9', // Template ID (à configurer)
         templateParams,
-        'your_public_key' // Public Key (à configurer)
+        'frwlWB9NxiP7BGsmt' // Public Key (à configurer)
       );
 
       setFormStatus('success');
